@@ -34,19 +34,26 @@ const List = () => {
   }, [state])
 
   return (
-    <div>
-      <div>
+    <div className="flex flex-col text-center items-center justify-center h-[100vh] w-[100vw]  gap-4">
+      <div className="flex flex-row text-center items-center justify-center gap-4">
         <button onClick={removeAllUsers}>Clear List</button>
         <button onClick={resetListUsers}>Reset List</button>
       </div>
       <div>
         {state.map((user) => {
           return (
-            <div key={user.id}>
+            <div
+              className="h-[100px] w-[200px] flex flex-row text-center items-center justify-center gap-2"
+              key={user.id}
+            >
               <p>{user.name}</p>
               <p>{user.age}</p>
-              <p>{user.id}</p>
-              <button onClick={() => removeUser(user.id)}>remove</button>
+              <button
+                className="w-[140px] h-[40px] bg-yellow-100"
+                onClick={() => removeUser(user.id)}
+              >
+                remove
+              </button>
             </div>
           )
         })}
