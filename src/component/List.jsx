@@ -5,7 +5,7 @@ import {
   removeAllUsers,
   resetListUsers,
   removeUser,
-} from './hooks/removeAllUsers.js'
+} from './hooks/reducersActions.js'
 
 const List = () => {
   const [userData, setUserData] = useState(usersList)
