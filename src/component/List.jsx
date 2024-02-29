@@ -23,6 +23,10 @@ const List = () => {
     dispatch({ type: 'REST_LIST' })
   }
 
+  const removeUser = (id) => {
+    dispatch({ type: 'REMOVE_ITEMS', payload: { id } })
+  }
+
   useEffect(() => {
     console.log(state)
   }, [state])
@@ -40,6 +44,13 @@ const List = () => {
               <p>{user.name}</p>
               <p>{user.age}</p>
               <p>{user.id}</p>
+              <button
+                onClick={() => {
+                  removeUser(user.id)
+                }}
+              >
+                remove
+              </button>
             </div>
           )
         })}
