@@ -2,16 +2,16 @@ import React, { useReducer, useEffect } from 'react'
 import { usersList } from './hooks/dataList.js'
 
 const reducer = (state, action) => {
-  switch (action.type) {
-    case 'CLEAR_LIST':
-      return []
-    case 'RESET_LIST':
-      return usersList
-    case 'REMOVE_ITEM':
-      return state.filter((user) => user.id !== action.payload.id)
-    default:
-      return state
+  if (action.type === 'CLEAR_LIST') {
+    return []
   }
+  if (action.type === 'RESET_LIST') {
+    return usersList
+  }
+  if (action.type === 'REMOVE_ITEM') {
+    return state.filter((user) => user.id !== action.payload.id)
+  }
+  throw new Error(`Invalid action ${action.type}`)
 }
 
 const List = () => {
