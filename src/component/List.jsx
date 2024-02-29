@@ -1,23 +1,15 @@
 import React, { useReducer, useEffect, useState } from 'react'
 import { usersList } from './hooks/dataList.js'
-import { REMOVE_ALL_ITEMS, REST_LIST, REMOVE_USER } from './hooks/actionsJs.js'
 import reducer from './hooks/useReducer.js'
+import {
+  removeAllUsers,
+  resetListUsers,
+  removeUser,
+} from './hooks/removeAllUsers.js'
 
 const List = () => {
   const [userData, setUserData] = useState(usersList)
   const [state, dispatch] = useReducer(reducer, userData)
-
-  const removeAllUsers = () => {
-    dispatch({ type: REMOVE_ALL_ITEMS })
-  }
-
-  const resetListUsers = () => {
-    dispatch({ type: REST_LIST })
-  }
-
-  const removeUser = (id) => {
-    dispatch({ type: REMOVE_USER, payload: { id } })
-  }
 
   useEffect(() => {
     console.log(state)
@@ -28,13 +20,17 @@ const List = () => {
       <div className="flex flex-row text-center items-center justify-center gap-4">
         <button
           className="w-[140px] h-[40px] bg-yellow-100"
-          onClick={removeAllUsers}
+          onClick={() => {
+            removeAllUsers(dispatch)
+          }}
         >
           Clear List
         </button>
         <button
           className="w-[140px] h-[40px] bg-yellow-100"
-          onClick={resetListUsers}
+          onClick={() => {
+            resetListUsers(dispatch)
+          }}
         >
           Reset List
         </button>
@@ -50,7 +46,7 @@ const List = () => {
               <p>{user.age}</p>
               <button
                 className="w-[140px] h-[40px] bg-yellow-100"
-                onClick={() => removeUser(user.id)}
+                onClick={() => removeUser(dispatch, user.id)}
               >
                 remove
               </button>
