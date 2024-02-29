@@ -1,6 +1,7 @@
 import react from 'react'
+import List from './component/List.jsx'
 function App() {
-  return <h1>Hello World</h1>
+  return <List />
 }
 
 export default App
