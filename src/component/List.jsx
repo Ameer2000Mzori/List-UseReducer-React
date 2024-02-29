@@ -14,6 +14,7 @@ const reducer = (state, action) => {
       return user.id !== action.payload.id
     })
   }
+  throw new Error(`Invalid action ${action.type}`)
 }
 
 const List = () => {
