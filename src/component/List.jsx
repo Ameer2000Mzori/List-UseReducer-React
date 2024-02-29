@@ -1,36 +1,22 @@
 import React, { useReducer, useEffect, useState } from 'react'
 import { usersList } from './hooks/dataList.js'
-
-const reducer = (state, action) => {
-  if (action.type === 'REMOVE_ALL_ITEMS') {
-    return []
-  }
-  if (action.type === 'REST_LIST') {
-    return usersList
-  }
-
-  if (action.type === 'REMOVE_USER') {
-    return state.filter((user) => {
-      return user.id !== action.payload.id
-    })
-  }
-  throw new Error(`Invalid action ${action.type}`)
-}
+import { REMOVE_ALL_ITEMS, REST_LIST, REMOVE_USER } from './hooks/actionsJs.js'
+import reducer from './hooks/useReducer.js'
 
 const List = () => {
   const [userData, setUserData] = useState(usersList)
   const [state, dispatch] = useReducer(reducer, userData)
 
   const removeAllUsers = () => {
-    dispatch({ type: 'REMOVE_ALL_ITEMS' })
+    dispatch({ type: REMOVE_ALL_ITEMS })
   }
 
   const resetListUsers = () => {
-    dispatch({ type: 'REST_LIST' })
+    dispatch({ type: REST_LIST })
   }
 
   const removeUser = (id) => {
-    dispatch({ type: 'REMOVE_USER', payload: { id } })
+    dispatch({ type: REMOVE_USER, payload: { id } })
   }
 
   useEffect(() => {
